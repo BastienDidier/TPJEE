@@ -27,7 +27,7 @@ import javax.sql.DataSource;
  *
  * @author Etu
  */
-@WebServlet(name = "ServletListUser", urlPatterns = {"/ServletListUser"})
+@WebServlet(name = "ServletListUser", urlPatterns = {"/backoffice/ServletListUser"})
 public class ServletListUser extends HttpServlet {
 
     /**
@@ -59,7 +59,7 @@ public class ServletListUser extends HttpServlet {
             // Cr?ation d'une requ?te sans param?tres
             Statement ps = con.createStatement();
             ResultSet rs;
-            rs = ps.executeQuery("select * from USERS");
+            rs = ps.executeQuery("select * from USER");
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -74,6 +74,7 @@ public class ServletListUser extends HttpServlet {
                  out.println("<tr><td>"+rs.getString("NOM")+"</td><td>"+rs.getString("PRENOM")+"</td><td>"+rs.getString("EMAIL")+"</td>><td>"+rs.getString("PRIVILEGE")+"</td></tr>");
              }
              out.println("</table>");
+             out.println("<a href=index_backoffice.html>Accueil</a>");
             out.println("</body>");
             out.println("</html>");
         }

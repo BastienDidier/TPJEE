@@ -26,7 +26,7 @@ import javax.sql.DataSource;
  *
  * @author Etu
  */
-@WebServlet(name = "ServletCreerDataBase", urlPatterns = {"/ServletCreerDataBase"})
+@WebServlet(name = "ServletCreerDataBase", urlPatterns = {"/backoffice/ServletCreerDataBase"})
 public class ServletCreerDataBase extends HttpServlet {
 
     /**
@@ -79,6 +79,7 @@ public class ServletCreerDataBase extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletCreerDataBase at " + request.getContextPath() + "</h1>");
+            out.println("<a href=index_backoffice.html>Accueil</a>");
             out.println("</body>");
             out.println("</html>");
         } catch (NamingException ex) {

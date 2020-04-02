@@ -26,7 +26,7 @@ import javax.sql.DataSource;
  *
  * @author Etu
  */
-@WebServlet(name = "ServletEnterUserDataBase", urlPatterns = {"/ServletEnterUserDataBase"})
+@WebServlet(name = "ServletEnterUserDataBase", urlPatterns = {"/backoffice/ServletEnterUserDataBase"})
 public class ServletEnterUserDataBase extends HttpServlet {
 
     /**
@@ -59,9 +59,9 @@ public class ServletEnterUserDataBase extends HttpServlet {
             Statement ps = con.createStatement();
             
             // Cr?ation de la table CLIENT avec un ID autog?n?r? et deux champs NOM et PRENOM
-            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto','titi','titi@gmail.com',0,'toto'"); 
-            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto1','titi','titi@gmail.com',0,'toto'");
-            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto2','titi','titi@gmail.com',0,'toto'"); 
+            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto','titi','titi@gmail.com',0,'toto')"); 
+            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto1','titi','titi@gmail.com',0,'toto')");
+            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto2','titi','titi@gmail.com',0,'toto')"); 
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -70,6 +70,7 @@ public class ServletEnterUserDataBase extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletEnterUserDataBase at " + request.getContextPath() + "</h1>");
+            out.println("<a href=index_backoffice.html>Accueil</a>");
             out.println("</body>");
             out.println("</html>");
         }
