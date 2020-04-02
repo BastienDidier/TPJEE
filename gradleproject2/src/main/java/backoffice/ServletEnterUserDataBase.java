@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backoffice;
+package front.backoffice;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -59,9 +59,9 @@ public class ServletEnterUserDataBase extends HttpServlet {
             Statement ps = con.createStatement();
             
             // Cr?ation de la table CLIENT avec un ID autog?n?r? et deux champs NOM et PRENOM
-            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto','titi','titi@gmail.com',0,'toto')"); 
-            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto1','titi','titi@gmail.com',0,'toto')");
-            ps.executeUpdate("INSERT INTO USER (NOM, PRENOM, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto2','titi','titi@gmail.com',0,'toto')"); 
+            ps.executeUpdate("INSERT INTO USER (NAME, FIRSTNAME, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto','titi','titi@gmail.com',0,'toto')"); 
+            ps.executeUpdate("INSERT INTO USER (NAME, FIRSTNAME, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto1','titi','titi@gmail.com',0,'toto')");
+            ps.executeUpdate("INSERT INTO USER (NAME, FIRSTNAME, EMAIL, PRIVILEGE, PASSWORD) VALUES('toto2','titi','titi@gmail.com',0,'toto')"); 
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

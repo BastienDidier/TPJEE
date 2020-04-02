@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backoffice;
+package front.backoffice;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -71,7 +71,7 @@ public class ServletListUser extends HttpServlet {
              out.println("<table>");
              while(rs.next())
              {
-                 out.println("<tr><td>"+rs.getString("NOM")+"</td><td>"+rs.getString("PRENOM")+"</td><td>"+rs.getString("EMAIL")+"</td>><td>"+rs.getString("PRIVILEGE")+"</td></tr>");
+                 out.println("<tr><td>"+rs.getString("NAME")+"</td><td>"+rs.getString("FIRSTNAME")+"</td><td>"+rs.getString("EMAIL")+"</td>><td>"+rs.getString("PRIVILEGE")+"</td></tr>");
              }
              out.println("</table>");
              out.println("<a href=index_backoffice.html>Accueil</a>");

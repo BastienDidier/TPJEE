@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gradleproject2;
+package front.gradleproject2;
 
 import java.io.IOException;
 import java.io.PrintWriter;

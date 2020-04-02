@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package front.backoffice;
+package front.front;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -26,8 +27,8 @@ import javax.sql.DataSource;
  *
  * @author Etu
  */
-@WebServlet(name = "ServletCreerDataBase", urlPatterns = {"/backoffice/ServletCreerDataBase"})
-public class ServletCreerDataBase extends HttpServlet {
+@WebServlet(name = "ServletAddingUser", urlPatterns = {"/front/ServletAddingUser"})
+public class ServletAddingUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,12 +40,11 @@ public class ServletCreerDataBase extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, NamingException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-             Context initCtx=null;
+                
+              Context initCtx=null;
             try {
                 initCtx = new InitialContext();
             } catch (NamingException ex) {
@@ -55,35 +55,34 @@ public class ServletCreerDataBase extends HttpServlet {
             Object refRecherchee = initCtx.lookup("jdbc/__default");
             DataSource ds = (DataSource)refRecherchee;
             Connection con = ds.getConnection();
-            
+            String name = request.getParameter("name");
+            String firstname = request.getParameter("firstname");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
             // Cr?ation d'une requ?te sans param?tres
             Statement ps = con.createStatement();
-            try
+           
+            /* TODO output your page here. You may use following sample code. */
+           ResultSet rs = ps.executeQuery("INSERT INTO USER(NAME, FIRSTNAME, EMAIL, PASSWORD, LEVEL) VALUES ('" + name + "', '" + firstname + "', '" + email + "', '" + password + "', 0)");
+               
+            if (name != "" && firstname != "" && email != "" && password != "" && !rs.wasNull())
             {
-                ps.executeUpdate("DROP TABLE USER"); // Suppression de la table CLIENT si elle existait d?j? 
+                
+                  out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet ServletAddingUser</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Servlet ServletAddingUser at " + request.getContextPath() + "</h1>");
+                out.println("<h1>Compte creer</h1>");
+                out.println("</body>");
+                out.println("</html>");
+            }else{
+               response.sendRedirect("saisieincomplete.html");
             }
-            catch (Exception ex)
-            {
-                // Table d?j? existante
-                System.out.println("La table n'existait pas");
-            }
-            
-            // Cr?ation de la table CLIENT avec un ID autog?n?r? et deux champs NOM et PRENOM
-            ps.executeUpdate("CREATE TABLE USER (ID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, NAME VARCHAR(30),PASSWORD VARCHAR(30),EMAIL VARCHAR(30),PRIVILEGE VARCHAR(1), FIRSTNAME VARCHAR(30) NOT NULL)"); 
             
             
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletCreerDataBase</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletCreerDataBase at " + request.getContextPath() + "</h1>");
-            out.println("<a href=index_backoffice.html>Accueil</a>");
-            out.println("</body>");
-            out.println("</html>");
-        } catch (NamingException ex) {
-            Logger.getLogger(ServletCreerDataBase.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -101,8 +100,10 @@ public class ServletCreerDataBase extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(ServletAddingUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ServletCreerDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletAddingUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -119,8 +120,10 @@ public class ServletCreerDataBase extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(ServletAddingUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ServletCreerDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletAddingUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
